@@ -29,9 +29,9 @@ def stream_handler(message):
         print("Writing data to serial device.\n")
         ser.write(data.encode())
         print("Write successful, updating recv with 1")
-        db.child("canbus").child("recv").set("1")
+        db.child("canbus").child("recv").set(1)
     except:
         print("Something went wrong, updating recv with -1\n")
-        db.child("canbus").child("recv").set("-1")
+        db.child("canbus").child("recv").set(-1)
 
 send_stream = db.child("canbus").child("send").stream(stream_handler)
