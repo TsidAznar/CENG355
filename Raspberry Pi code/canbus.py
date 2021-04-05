@@ -7,15 +7,15 @@ from random import randint
 import pyrebase
 
 config = {
-    "apiKey": "AIzaSyAKZJgwCWfuPtH8CQwHV2sCX9z3r8rJNzA",
-    "authDomain": "infotainment-888de.firebaseapp.com",
-    "databaseURL": "https://infotainment-888de-default-rtdb.firebaseio.com",
-    "projectId": "infotainment-888de",
-    "storageBucket": "infotainment-888de.appspot.com",
-    "messagingSenderId": "76136209318",
-    "appId": "1:76136209318:web:2afb0f962480453b044d67",
-    "measurementId": "G-1KYSJBR7KW",
-    "serviceAccount": "admin.json"
+    "apiKey": "",
+    "authDomain": "",
+    "databaseURL": "",
+    "projectId": "",
+    "storageBucket": "",
+    "messagingSenderId": "",
+    "appId": "",
+    "measurementId": "",
+    "serviceAccount": ""
 }
 seed(1)
 
