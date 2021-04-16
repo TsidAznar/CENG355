@@ -7,11 +7,49 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/labelHumidity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="41dp"
+        android:text="Humidity:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/labelTemp" />
+
+    <TextView
+        android:id="@+id/humidityValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="253dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelHumidity" />
+
+    <TextView
+        android:id="@+id/labelTemp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="41dp"
+        android:text="Temperature:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/labelLight" />
+
+    <TextView
+        android:id="@+id/tempValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="137dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelTemp" />
+
+    <TextView
         android:id="@+id/labelInfotainment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Infotainment System Sensor Testing"
+        android:text="Infotainment System"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,58 +59,48 @@
         android:id="@+id/labelGasValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="92dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="84dp"
         android:text="Gas Value:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelViewData" />
-
-    <TextView
-        android:id="@+id/lightValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintStart_toEndOf="@+id/labelLight"
-        app:layout_constraintTop_toBottomOf="@+id/gasValue" />
-
-    <TextView
-        android:id="@+id/labelLight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
-        android:layout_marginTop="32dp"
-        android:text="Light Value:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelGasValue" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/gasValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="84dp"
         app:layout_constraintStart_toEndOf="@+id/labelGasValue"
-        app:layout_constraintTop_toBottomOf="@+id/labelInfotainment" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/labelViewData"
+        android:id="@+id/labelLight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="92dp"
-        android:layout_marginTop="96dp"
-        android:text="Data View:"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="42dp"
+        android:text="Light Value:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/lightValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/labelLight" />
 
     <TextView
         android:id="@+id/labelGasValue2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="218dp"
+        android:layout_marginStart="84dp"
         android:layout_marginTop="32dp"
         android:text="Gas Value:"
-        app:layout_constraintStart_toEndOf="@+id/labelGasValue"
+        app:layout_constraintStart_toEndOf="@+id/car"
         app:layout_constraintTop_toBottomOf="@+id/labelSetData" />
 
     <TextView
@@ -89,10 +117,10 @@
         android:id="@+id/labelSetData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="228dp"
+        android:layout_marginStart="160dp"
         android:layout_marginTop="34dp"
         android:text="Set Data:"
-        app:layout_constraintStart_toEndOf="@+id/labelViewData"
+        app:layout_constraintStart_toEndOf="@+id/rightTurnLight"
         app:layout_constraintTop_toBottomOf="@+id/labelInfotainment" />
 
     <EditText
@@ -155,5 +183,62 @@
         android:text="Set Value"
         app:layout_constraintStart_toEndOf="@+id/editTextNumberDecimal"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/car"
+        android:layout_width="238dp"
+        android:layout_height="166dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginBottom="29dp"
+        android:rotation="-90"
+        android:scaleX="0.75"
+        android:scaleY="0.75"
+        app:layout_constraintBottom_toTopOf="@+id/labelLight"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelGasValue"
+        app:srcCompat="@drawable/car" />
+
+    <ImageView
+        android:id="@+id/leftTurnLight"
+        android:layout_width="28dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="116dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/car"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/red_circle" />
+
+    <ImageView
+        android:id="@+id/rightTurnLight"
+        android:layout_width="28dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="36dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/car"
+        app:layout_constraintStart_toEndOf="@+id/leftTurnLight"
+        app:srcCompat="@drawable/red_circle" />
+
+    <ImageView
+        android:id="@+id/leftBrakeLight"
+        android:layout_width="28dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="4dp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/car"
+        app:srcCompat="@drawable/red_circle" />
+
+    <ImageView
+        android:id="@+id/rightBrakeLight"
+        android:layout_width="28dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="4dp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@+id/leftBrakeLight"
+        app:layout_constraintTop_toBottomOf="@+id/car"
+        app:srcCompat="@drawable/red_circle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

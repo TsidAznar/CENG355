@@ -5,19 +5,19 @@ import com.google.firebase.database.IgnoreExtraProperties;
 @IgnoreExtraProperties
 public class Servo {
 
-    public int send;
+    public String send;
     public int recv;
 
     public Servo() {
 
     }
 
-    public Servo(int send, int recv) {
+    public Servo(String send, int recv) {
         this.send = send;
         this.recv = recv;
     }
 
-    public int getSend() {
+    public String getSend() {
         return send;
     }
 

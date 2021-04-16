@@ -7,9 +7,12 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -23,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
     DatabaseReference servoRef = FirebaseDatabase.getInstance().getReference().child("servo");
     DatabaseReference canbusRef = FirebaseDatabase.getInstance().getReference().child("canbus");
+    DatabaseReference tempRef = FirebaseDatabase.getInstance().getReference().child("temp");
+    DatabaseReference humidityRef = FirebaseDatabase.getInstance().getReference().child("humidity");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,12 +36,23 @@ public class MainActivity extends AppCompatActivity {
 
         TextView gasData = findViewById(R.id.gasValue);
         TextView lightData = findViewById(R.id.lightValue);
+        TextView tempData = findViewById(R.id.tempValue);
+        TextView humidityData = findViewById(R.id.humidityValue);
         Switch leftLight = (Switch) findViewById(R.id.switchLeftTurn);
         Switch rightLight = (Switch) findViewById(R.id.switchRightTurn);
         Switch brakes = (Switch) findViewById(R.id.switchBrakes);
         Switch parking = (Switch) findViewById(R.id.switchParking);
         EditText servoValue = findViewById(R.id.editTextNumberDecimal);
         Button setServoValue = findViewById(R.id.button);
+        ImageView leftTurnLight = findViewById(R.id.leftTurnLight);
+        ImageView rightTurnLight = findViewById(R.id.rightTurnLight);
+        ImageView leftBrakeLight = findViewById(R.id.leftBrakeLight);
+        ImageView rightBrakeLight = findViewById(R.id.rightBrakeLight);
+        Animation animation = new AlphaAnimation((float) 1, 0);
+        animation.setDuration(500);
+        animation.setRepeatCount(Animation.INFINITE);
+        animation.setRepeatMode(Animation.REVERSE);
+
 
         ValueEventListener gasListener = new ValueEventListener() {
             @Override
@@ -56,6 +72,68 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 CANBus sendrecv = snapshot.getValue(CANBus.class);
                 lightData.setText(sendrecv.send);
+                switch(sendrecv.send) {
+                    case "B":
+                        leftBrakeLight.setVisibility(View.VISIBLE);
+                        rightBrakeLight.setVisibility(View.VISIBLE);
+                        break;
+                    case "b":
+                        leftBrakeLight.setVisibility(View.INVISIBLE);
+                        rightBrakeLight.setVisibility(View.INVISIBLE);
+                        break;
+                    case "P":
+                        leftTurnLight.setVisibility(View.VISIBLE);
+                        rightTurnLight.setVisibility(View.VISIBLE);
+                        leftBrakeLight.setVisibility(View.VISIBLE);
+                        rightBrakeLight.setVisibility(View.VISIBLE);
+                        break;
+                    case "p":
+                        leftTurnLight.setVisibility(View.INVISIBLE);
+                        rightTurnLight.setVisibility(View.INVISIBLE);
+                        leftBrakeLight.setVisibility(View.INVISIBLE);
+                        rightBrakeLight.setVisibility(View.INVISIBLE);
+                        break;
+                    case "L":
+                        leftTurnLight.setVisibility(View.VISIBLE);
+                        leftTurnLight.startAnimation(animation);
+                        break;
+                    case "l":
+                        leftTurnLight.setVisibility(View.INVISIBLE);
+                        leftTurnLight.clearAnimation();
+                        break;
+                    case "R":
+                        rightTurnLight.setVisibility(View.VISIBLE);
+                        rightTurnLight.startAnimation(animation);
+                        break;
+                    case "r":
+                        rightTurnLight.setVisibility(View.INVISIBLE);
+                        rightTurnLight.clearAnimation();
+                        break;
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Do nothing?
+            }
+        };
+
+        ValueEventListener tempListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                tempData.setText(snapshot.getValue().toString());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Do nothing?
+            }
+        };
+
+        ValueEventListener humidityListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                humidityData.setText(snapshot.getValue().toString());
             }
 
             @Override
@@ -66,6 +144,8 @@ public class MainActivity extends AppCompatActivity {
 
         servoRef.addValueEventListener(gasListener);
         canbusRef.addValueEventListener(lightListener);
+        tempRef.addValueEventListener(tempListener);
+        humidityRef.addValueEventListener(humidityListener);
 
         leftLight.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -120,8 +200,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (servoValue.getText().length() != 0) {
                     String str = servoValue.getText().toString();
-                    int val = Integer.parseInt(str);
-                    servoRef.child("send").setValue(val);
+                    servoRef.child("send").setValue(str);
                 }
             }
         });
