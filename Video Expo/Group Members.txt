@@ -1,3 +1,6 @@
+Team: Infotainment
+Catagory: Consumer
+
 Chris Burgener
 Michael Burgener
 Tsidkeenu Aznar
