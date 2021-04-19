@@ -1,7 +1,8 @@
 Team: Infotainment
-Catagory: Consumer
 
 Chris Burgener
 Michael Burgener
 Tsidkeenu Aznar
 Tristan Reinhardt
+
+Computer Engineering Technology: Consumer
